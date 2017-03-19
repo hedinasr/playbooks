@@ -1,0 +1,21 @@
+---
+# file: roles/packages/handlers/main.yml
+
+- name: install_packages
+  become: true
+  package: name={{ item }}  state=latest
+  with_items:
+    - tmux
+    - htop
+    - "{{vim}}"
+    - git
+    - nmap
+    - "{{nfs}}"
+
+- name: install_ansible_and_tinyproxy
+  become: true
+  package: name={{ item }} state=latest
+  with_items:
+    - tinyproxy
+    - ansible
+  when: inventory_hostname in groups['pi-home']

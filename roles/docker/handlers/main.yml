@@ -1,0 +1,6 @@
+---
+# file: roles/docker/handlers/main.yml
+
+- name: run docker
+  service: name=docker state=started enabled=yes
+  become: true

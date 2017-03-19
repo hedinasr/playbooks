@@ -1,0 +1,11 @@
+---
+- hosts: pi-home
+  remote_user: root
+  become_method: su
+
+  roles:
+    - common
+    - docker
+    - vlan
+    - packages
+

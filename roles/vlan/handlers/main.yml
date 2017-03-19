@@ -1,0 +1,6 @@
+---
+# file: roles/vlan/handlers/main.yml
+
+- name: vlan
+  modprobe: name=8021q state=present
+  become: true

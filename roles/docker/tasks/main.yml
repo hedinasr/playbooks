@@ -1,0 +1,14 @@
+---
+# file: roles/docker/tasks/main.yml
+
+- name: be sure docker is installed
+  package: name=docker state=latest
+  notify:
+    - run docker
+  tags: docker
+  become: true
+
+- name: be sure docker-compose is installed
+  package: name=docker-compose state=latest
+  tags: docker
+  become: true

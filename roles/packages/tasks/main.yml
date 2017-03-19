@@ -1,0 +1,25 @@
+---
+# file: roles/packages/tasks/main.yml
+
+- name: update_packages_apt
+  become: true
+  apt: update_cache=yes upgrade=yes
+  notify:
+    - install_packages
+  check_mode: yes
+  when: ansible_os_family == "Debian"
+
+- name: update_packages_pacman
+  become: true
+  pacman: update_cache=yes upgrade=yes
+  notify:
+    - install_packages
+    - install_ansible_and_tinyproxy
+  check_mode: yes
+  when: ansible_os_family == "Archlinux"
+
+# - name: enable pacman colors
+#   become: true
+#   lineinfile: dest=/etc/pacman.conf regexp='^#Color$' line='Color'
+
+

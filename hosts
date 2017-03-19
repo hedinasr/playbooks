@@ -1,0 +1,9 @@
+[pi-home]
+pi3 ansible_host=192.168.1.168
+pi2 ansible_host=192.168.1.79
+
+[pi-tpr]
+pi17 ansible_host=10.250.3.17
+pi18 ansible_host=10.250.3.18
+pi19 ansible_host=10.250.3.19
+pi20 ansible_host=10.250.3.20

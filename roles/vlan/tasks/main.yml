@@ -1,0 +1,13 @@
+---
+# file: roles/vlan/tasks/main.yml
+
+- name: be sure vlan is installed
+  package: name=vlan state=latest
+  notify:
+    - vlan
+  tags: vlan
+  become: true
+
+- name: configure 8021q in tap0 interface
+  copy: src=vlan-314 dest=/etc/netctl
+  become: true
