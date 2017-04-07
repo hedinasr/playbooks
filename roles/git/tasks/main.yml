@@ -1,0 +1,6 @@
+---
+# file: roles/git/tasks/main.yml
+
+- name: QPU
+  become: true
+  git: repo='https://github.com/mn416/QPULib.git' dest=/srv/qpu

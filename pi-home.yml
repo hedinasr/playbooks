@@ -8,4 +8,5 @@
     - docker
     - vlan
     - packages
+    - git
 

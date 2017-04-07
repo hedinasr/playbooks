@@ -15,11 +15,30 @@
   notify:
     - install_packages
     - install_ansible_and_tinyproxy
-  check_mode: yes
   when: ansible_os_family == "Archlinux"
 
-# - name: enable pacman colors
-#   become: true
-#   lineinfile: dest=/etc/pacman.conf regexp='^#Color$' line='Color'
+- name: install_packages
+  become: true
+  package: name={{ item }} state=latest
+  with_items:
+    - tmux
+    - htop
+    - "{{vim}}"
+    - make
+    - git
+    - gcc
+    - nmap
+    - "{{nfs}}"
 
+- name: install_ansible_and_tinyproxy
+  become: true
+  package: name={{ item }} state=latest
+  with_items:
+    - tinyproxy
+    - ansible
+  when: inventory_hostname in groups['pi-home']
 
+- name: enable pacman colors
+  become: true
+  lineinfile: dest=/etc/pacman.conf regexp='^#Color$' line='Color'
+  when: ansible_os_family == "Archlinux"
