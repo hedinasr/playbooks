@@ -3,8 +3,18 @@
   remote_user: "${ansible_ssh_user}"
   become_method: sudo
 
-  roles:
-    - packages
+  tasks:
+#    - name: set default gw
+#      become: true
+#      command: route add default gw 10.250.3.1 dev eth0
+    - name: ensure dhcpd is not running
+      become: true
+      service: name=dhcpcd state=stopped
 
-  environment:
-    http_proxy: http://10.250.3.1:8888
+  roles:
+    - common
+    - packages
+    - security
+    - git
+#  environment:
+#    http_proxy: http://10.250.3.1:8888
