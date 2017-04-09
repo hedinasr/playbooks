@@ -9,3 +9,11 @@
   become: true
   # en_US.UTF-8: nécessaire pour tmux
   locale_gen: name=fr_FR.UTF-8 name=en_US.UTF-8 state=present
+
+- name: unset GB locale
+  become: true
+  locale_gen: name=en_GB.UTF-8 state=absent
+
+- name: set hostname
+  become: true
+  hostname: name={{ inventory_hostname }}
