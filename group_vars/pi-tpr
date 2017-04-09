@@ -6,3 +6,4 @@ vim: vim-tiny
 ansible_ssh_private_key_file: /home/hnasr/.ssh/pi-tpr
 ansible_ssh_user: pi
 key: "{{ lookup('file', '/home/hnasr/.ssh/pi-tpr.pub') }}"
+oar: oar-common

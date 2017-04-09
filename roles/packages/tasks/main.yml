@@ -4,9 +4,8 @@
 - name: update_packages_apt
   become: true
   apt: update_cache=yes upgrade=yes
-  notify:
-    - install_packages
-  check_mode: yes
+#  notify:
+#    - install_packages
   when: ansible_os_family == "Debian"
 
 - name: update_packages_pacman
@@ -29,14 +28,6 @@
     - gcc
     - nmap
     - "{{nfs}}"
-
-- name: install_ansible_and_tinyproxy
-  become: true
-  package: name={{ item }} state=latest
-  with_items:
-    - tinyproxy
-    - ansible
-  when: inventory_hostname in groups['pi-home']
 
 - name: enable pacman colors
   become: true
