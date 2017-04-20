@@ -1,10 +1,10 @@
 ---
-# file: roles/oar/tasks/main.yml
+# file: roles/oar-node/tasks/main.yml
 
-- name: install oar
+- name: install oar node
   become: true
   package: name={{ item }} state=latest
   with_items:
-    - "{{oar}}"
+    - oar-node
   when: ansible_os_family == "Debian"
 

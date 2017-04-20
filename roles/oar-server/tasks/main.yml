@@ -1,0 +1,16 @@
+---
+# file: roles/oar-server/tasks/main.yml
+
+- name: install oar server
+  become: true
+  package: name={{ item }} state=latest
+  with_items:
+    - oar-server
+    - mysql-server
+    - oar-server-mysql
+    - taktuk
+  when: ansible_os_family == "Debian"
+
+#- name: start oar server
+#  service: name=oar-server state=started
+

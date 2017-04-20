@@ -1,0 +1,17 @@
+---
+- hosts: headnode
+  remote_user: "${ansible_ssh_user}"
+  become_method: sudo
+  
+  roles:
+    - common
+    - packages
+    - oar-server
+
+  tasks:
+    - name: install pew
+      become: true
+      pip: name=pew
+
+  environment:
+    http_proxy: http://10.250.3.254:3128

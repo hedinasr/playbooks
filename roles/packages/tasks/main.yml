@@ -28,8 +28,22 @@
     - gcc
     - nmap
     - "{{nfs}}"
+    - python3
+    - python3-pip
+    - proxychains
 
-- name: enable pacman colors
+- name: install common cluster packages
   become: true
-  lineinfile: dest=/etc/pacman.conf regexp='^#Color$' line='Color'
-  when: ansible_os_family == "Archlinux"
+  package: name={{ item }} state=latest
+  with_items:
+    - openmpi-bin
+    - openmpi-doc
+    - libopenmpi-dev
+    - hpcc
+    - liblapack-dev
+    - pdsh
+
+#- name: enable pacman colors
+#  become: true
+#  lineinfile: dest=/etc/pacman.conf regexp='^#Color$' line='Color'
+#  when: ansible_os_family == "Archlinux"

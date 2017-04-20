@@ -6,7 +6,7 @@
   tasks:
 #    - name: set default gw
 #      become: true
-#      command: route add default gw 10.250.3.1 dev eth0
+#      command: route del default gw 10.250.3.1 dev eth0
     - name: ensure dhcpd is not running
       become: true
       service: name=dhcpcd state=stopped
@@ -14,7 +14,8 @@
   roles:
     - common
     - packages
-    - security
-    - git
-#  environment:
-#    http_proxy: http://10.250.3.1:8888
+    - oar
+#    - security
+#    - git
+  environment:
+    http_proxy: http://10.250.3.254:3128
